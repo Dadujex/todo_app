@@ -1,0 +1,28 @@
+<%- include("header") %>
+
+    <div class="box" id="heading">
+        <h1>
+            <%= listTitle %>
+        </h1>
+    </div>
+
+    <div class="box">
+        <% for(let i=0; i < newListItems.length; i++) { %>
+            <div class="item grid-container">
+                <input type="checkbox">
+                <p>
+                    <%= newListItems[i].name %>
+                </p>
+                <form action="/del" method="post">
+                    <button type="submit" class="del" name="button" value=<%=`${newListItems[i]._id}`%>>X</button>
+                    <input type="hidden" name="listName" value=<%=listTag %>></input>
+                </form>
+            </div>
+            <% } %>
+                <form class="item" action="/" method="post" autocomplete="off">
+                    <input type="text" name="newItem" placeholder="New Item" autofocus>
+                    <button type="submit" name="list" value=<%=listTag %>>+</button>
+                </form>
+    </div>
+
+    <%- include("footer") %>
